@@ -36,4 +36,6 @@ jobs:
                 var="$var $file"
             fi
           done
+          echo "job here"
+          echo "$var"
           make linkcheck2 foo=$var

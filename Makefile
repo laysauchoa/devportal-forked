@@ -28,6 +28,7 @@ livehtmlall:
 	sphinx-autobuild -a "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) --watch _static
 
 linkcheck2:
+	echo $(foo)
 	sphinx-build -b linkcheck "$(SOURCEDIR)" "$(BUILDDIR)" $(foo)
 
 spell:
