@@ -17,8 +17,8 @@ Grafana®,
 and M3 - all available in more than 80 regions around the world on AWS, GCP, Microsoft Azure, DigitalOcean, and UpCloud cloud platforms.
 
 
-Learn more about the Aiven platform
-------------------------------------
+Learn about the Aiven platform
+------------------------------
 
 .. panels::
 
