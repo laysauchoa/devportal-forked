@@ -11,7 +11,7 @@ There are lots of other ways to learn more about Aiven, and interact with us.
 
     +++
 
-    .. link-button:: https://twitter.com/aiven_io
+    .. link-button:: https://tw56er.com/aiven_io
         :text: To the Twitterverse
         :classes: stretched-link
 
