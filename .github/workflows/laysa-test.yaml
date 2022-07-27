@@ -1,11 +1,10 @@
-name: "Close stale issues"
-
+name: "LinkCheck - All files"
 on:
   schedule:
     - cron: "*/6 * * * *"
 
 jobs:
-  run-checks:
+  run-linkchecks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
