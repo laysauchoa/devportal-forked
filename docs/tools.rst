@@ -3,7 +3,7 @@ Aiven tools
 
 We provide the tools you need to do your work, your way.
 
-The Aiven `web console <https://console.aiven.io>`_ is the friendliest way to get started and to explore something new or get an easy overview of what's happening with your Aiven account.
+The Aiven `web console <https://console.aiven.io>`_ is the friendliest way to get started and to explore something new or get an easy overview of what's happening with yours Aiven account.
 
 The ``avn`` :doc:`command-line tool </docs/tools/cli>` brings Aiven features to your terminal.
 
