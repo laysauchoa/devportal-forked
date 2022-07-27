@@ -38,4 +38,4 @@ jobs:
           done
           echo "job here"
           echo "$var"
-          make linkcheck2 foo=$var
+          make foo="$var" linkcheck2
