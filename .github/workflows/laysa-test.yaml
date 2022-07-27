@@ -1,15 +1,15 @@
-name: SphinxLaysa
+name: "Close stale issues"
+
 on:
-  workflow_dispatch:
-    branches:
-      - master
+  schedule:
+    - cron: "*/6 * * * *"
 
 jobs:
-  prose:
+  run-checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+      - name: Checkout the repo
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Set up Python
