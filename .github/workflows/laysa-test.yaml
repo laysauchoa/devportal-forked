@@ -1,10 +1,10 @@
-name: "LinkCheck - All files"
+name: "Test Linkcheck"
 on:
   schedule:
-    - cron: "*/6 * * * *"
+    - cron: "0 6 * * 4"
 
 jobs:
-  run-linkchecks:
+  run-testlinkcheck:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
