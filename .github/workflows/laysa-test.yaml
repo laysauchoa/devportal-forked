@@ -2,7 +2,7 @@ name: SphinxLaysa
 on:
   workflow_dispatch:
     branches:
-      - main
+      - master
 
 jobs:
   prose:
