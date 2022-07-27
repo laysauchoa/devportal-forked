@@ -37,5 +37,8 @@ jobs:
                 var="$var $file"
             fi
           done
+
+      - name: Run linkcheck on changed files
+        run: |
           echo "$var"
           make files="$var" linkcheck-changed-files
