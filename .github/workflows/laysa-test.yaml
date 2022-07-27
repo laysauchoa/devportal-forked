@@ -1,4 +1,4 @@
-name: SphinxTest
+name: SphinxLaysa
 on:
   workflow_dispatch:
     branches:
