@@ -23,18 +23,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.7
-
-      - name: Cache Python dependencies
-        uses: actions/cache@v2
-        env:
-          cache-name: pythondotorg-cache-pip
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-${{ github.job }}-${{ env.cache-name }}-${{ hashFiles('requirements.txt', '*-requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ github.job }}-${{ env.cache-name }}-
-            ${{ runner.os }}-${{ github.job }}-
-            ${{ runner.os }}-
+          cache: "pip"
 
       - name: Install dependencies
         run: |
