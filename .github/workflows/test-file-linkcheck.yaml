@@ -29,17 +29,3 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run linkcheck on .rst files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [ "${file: -4}" == ".rst" ]
-              then
-                var="$var $file"
-            fi
-          done
-          if [ -z "$var" ]
-          then
-                echo "No *.rst changed files to check."
-          else
-                make files="$var" linkcheck-specified-files
-          fi
