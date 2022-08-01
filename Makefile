@@ -27,6 +27,9 @@ livehtml:
 livehtmlall:
 	sphinx-autobuild -a "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) --watch _static
 
+linkcheck-specified-files:
+	sphinx-build -b linkcheck "$(SOURCEDIR)" "$(BUILDDIR)" $(files)
+	
 spell:
 	vale $(SOURCEDIR)/index.rst
 	vale $(SOURCEDIR)/docs
