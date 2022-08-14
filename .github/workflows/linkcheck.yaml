@@ -1,8 +1,6 @@
 name: "LinkCheck - All files"
 
-on:
-  schedule:
-    - cron: "0 5 * * 2"
+on: workflow_dispatch
 
 jobs:
   run-checks:
@@ -22,3 +20,7 @@ jobs:
           pip install -r requirements.txt
       - name: LinkCheck
         run: make linkcheck
+      - name: Create Issue
+        if: failure() # OR Check a bool variable you create and toggle as needed
+        uses: JasonEtco/create-an-issue@master
+        env: GITHUB_TOKEN:${{ secrets.GITHUB_TOKEN }}
