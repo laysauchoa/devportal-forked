@@ -22,5 +22,5 @@ jobs:
         run: make linkcheck
       - name: Create Issue
         if: failure() # OR Check a bool variable you create and toggle as needed
-        uses: JasonEtco/create-an-issue@master
+        uses: JasonEtco/create-an-issue@main
         env: GITHUB_TOKEN:${{ secrets.GITHUB_TOKEN }}
