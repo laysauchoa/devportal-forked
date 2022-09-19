@@ -24,15 +24,7 @@ jobs:
       - name: LinkCheck
         id: broken_link
         run: |
-          echo "::set-output name=BROKEN_LINK::$(echo sorte)"
-
-      - name: Create an issue
-        uses: actions-ecosystem/action-create-issue@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          title: test
-          body: |
-            ${{ steps.broken_link.outputs.BROKEN_LINKS }}
-
-          labels: |
-            bug
+          echo "::set-output name=BROKEN_LINKS::$(echo sorte)"
+      - name: Echo
+        run: |
+          echo ${{ steps.broken_link.outputs.BROKEN_LINKS }}
