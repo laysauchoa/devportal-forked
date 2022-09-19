@@ -2,7 +2,7 @@ Aiven community
 ===============
 
 There are lots of other ways to learn more about Aiven, and interact with us.
-
+https://gitb.com/aiven
 
 .. grid:: 1 2 2 2
 
@@ -53,7 +53,7 @@ There are lots of other ways to learn more about Aiven, and interact with us.
         |icon-github| **GitHub** Find our public repositories on GitHub, work on `open source <https://aiven.io/open-source>`_ with us! 
 
 
-        .. button-link:: https://github.com/aiven
+        .. button-link:: https://gitb.com/aiven
             :align: right
             :color: primary
             :outline:
