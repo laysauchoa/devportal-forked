@@ -26,11 +26,18 @@ jobs:
         id: tests
         with:
           run: make linkcheck
-      - name: Create Issue
+
+      - name: Create an issue
         if: failure()
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BROKEN_LINKS: ${{ steps.tests.outputs.stderr }}
+        uses: actions-ecosystem/action-create-issue@v1
         with:
-          filename: .github/ISSUE_TEMPLATE/linkcheck_report.md
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.date.outputs.today }}
+          body: |
+            ${{ steps.tests.outputs.stderr }}
+
+            - [ ] Have a meeting with UX team
+            - [ ] Check the dashboard
+
+          labels: |
+            bug
