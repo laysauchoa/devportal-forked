@@ -22,13 +22,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: LinkCheck
-        id: version
+        id: broken_link
         run: |
           make linkcheck
-          echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
-      - name: Show output
-        if: failure()
-        run: echo ${{ steps.version.outputs.BROKEN_LINKS }}
+          echo "::set-output name=BROKEN_LINK::$(make linkcheck)"
 
       - name: Create an issue
         if: failure()
@@ -37,7 +34,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: test
           body: |
-            ${{ steps.version.outputs.BROKEN_LINKS }}
+            ${{ steps.broken_link.outputs.BROKEN_LINKS }}
 
           labels: |
             bug
