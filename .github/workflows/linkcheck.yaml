@@ -29,11 +29,11 @@ jobs:
       - name: Echo
         if: failure()
         run: echo ${{ steps.broken_link.outputs.BROKEN_LINKS }}
-      - name: Create Issue
+
+      - name: Create an issue
         if: failure()
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADJECTIVE: ${{ steps.broken_link.outputs.BROKEN_LINKS }}
+        uses: actions-ecosystem/action-create-issue@v1
         with:
-          filename: .github/ISSUE_TEMPLATE/linkcheck_report.md
+          github_token: ${{ secrets.github_token }}
+          title: test
+          body: ${{ steps.broken_link.outputs.BROKEN_LINKS }}
