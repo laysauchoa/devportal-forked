@@ -32,12 +32,9 @@ jobs:
         uses: actions-ecosystem/action-create-issue@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          title: ${{ steps.date.outputs.today }}
+          title: test
           body: |
-            ${{ steps.tests.outputs.stderr }}
-
-            - [ ] Have a meeting with UX team
-            - [ ] Check the dashboard
+            ${{ steps.tests.outputs.stdout }}
 
           labels: |
             bug
