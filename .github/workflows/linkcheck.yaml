@@ -31,6 +31,6 @@ jobs:
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BROKEN_LINKS: ${{ steps.tests.outputs.stdout }}
+          BROKEN_LINKS: ${{ steps.tests.outputs.stderr }}
         with:
           filename: .github/ISSUE_TEMPLATE/linkcheck_report.md
