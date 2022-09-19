@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
       - name: LinkCheck
         id: broken_link
-        run: echo "::set-output name=BROKEN_LINKS::$(echo sorte)"
+        run: echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
 
       - name: Create Issue
         uses: JasonEtco/create-an-issue@v2
