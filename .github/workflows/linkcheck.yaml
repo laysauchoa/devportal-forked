@@ -24,8 +24,7 @@ jobs:
       - name: LinkCheck
         id: broken_link
         run: |
-          make linkcheck
-          echo "::set-output name=BROKEN_LINK::$(make linkcheck)"
+          echo "::set-output name=BROKEN_LINK::$(echo sorte)"
 
       - name: Create an issue
         if: failure()
