@@ -26,6 +26,8 @@ jobs:
         run: |
           make linkcheck
           echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
+      - name: Show output
+        run: echo ${{ steps.version.outputs.BROKEN_LINKS }}
 
       - name: Create an issue
         if: failure()
