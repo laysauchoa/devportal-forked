@@ -25,7 +25,10 @@ jobs:
         uses: mathiasvr/command-output@v1
         id: tests
         with:
-          run: make linkcheck
+          run: |
+            result_code=${PIPESTATUS[0]}
+            echo "::set-output name=mix-test::$(make linkcheck)"
+            exit $result_code
 
       - name: Create an issue
         if: failure()
@@ -34,7 +37,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: test
           body: |
-            ${{ steps.tests.outputs.stdout }}
+            ${{ steps.vars.outputs.tests }}
 
           labels: |
             bug
