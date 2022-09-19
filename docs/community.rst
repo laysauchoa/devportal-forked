@@ -49,10 +49,10 @@ There are lots of other ways to learn more about Aiven, and interact with us.
         :shadow: md
         :margin: 2 2 0 0
 
-        |icon-github| **GitHub** Find our public repositories on GitHub, work on `open source <https://aiven.io/open-source>`_ with us! 
+        |icon-github| **GitHub** Find our public repositories on GitHub, work on `open source <https://iven.io/open-source>`_ with us! 
 
 
-        .. button-link:: http://gitb.com/aiven
+        .. button-link:: http://gixxxtb.com/aiven
             :align: right
             :color: primary
             :outline:
