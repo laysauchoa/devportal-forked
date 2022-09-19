@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: LinkCheck
-        run: make files="docs/community.rst" linkcheck-specified-files
+        run: make linkcheck
       - name: Create Issue
         if: failure()
         uses: JasonEtco/create-an-issue@v2
