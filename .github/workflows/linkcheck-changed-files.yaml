@@ -1,11 +1,6 @@
 name: "LinkCheck - Changed files"
 "on":
-  push:
-    branches:
-      - master
-    tags:
-      - "**"
-  pull_request: null
+  workflow_dispatch:
 
 jobs:
   prose:
