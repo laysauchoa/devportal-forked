@@ -23,8 +23,12 @@ jobs:
           pip install -r requirements.txt
       - name: LinkCheck
         id: broken_link
-        run: |
-          echo "::set-output name=BROKEN_LINKS::$(echo sorte)"
-      - name: Echo
-        run: |
-          echo ${{ steps.broken_link.outputs.BROKEN_LINKS }}
+        run: echo "::set-output name=BROKEN_LINKS::$(echo sorte)"
+
+      - name: Create Issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADJECTIVE: ${{ steps.broken_link.outputs.BROKEN_LINKS }}
+        with:
+          filename: .github/ISSUE_TEMPLATE/linkcheck_report.md

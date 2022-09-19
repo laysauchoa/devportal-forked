@@ -2,7 +2,7 @@
 title: 🚨 Weekly linkcheck failed
 labels: Maintanance, bug
 ---
-{{ env.BROKEN_LINKS }}
+{{ env.ADJECTIVE }}
 
 On devportal, we check the links on a weekly basis to ensure the links in on our docs are working.
 
