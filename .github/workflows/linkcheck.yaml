@@ -22,12 +22,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: LinkCheck
-        run: make linkcheck
+        uses: mathiasvr/command-output@v1
+        id: tests
+        with:
+          run: make linkcheck
       - name: Create Issue
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BROKEN_LINKS: great
+          BROKEN_LINKS: ${{ steps.tests.outputs.stdout }}
         with:
           filename: .github/ISSUE_TEMPLATE/linkcheck_report.md
