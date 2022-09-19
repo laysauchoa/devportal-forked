@@ -26,6 +26,7 @@ jobs:
         run: echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
 
       - name: Create Issue
+        if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
