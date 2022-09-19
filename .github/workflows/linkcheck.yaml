@@ -36,7 +36,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: test
           body: |
-            $GITHUB_SHA_SHORT
+            ${{ env.GITHUB_SHA_SHORT }}
 
           labels: |
             bug
