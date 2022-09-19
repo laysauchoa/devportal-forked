@@ -23,7 +23,9 @@ jobs:
           pip install -r requirements.txt
       - name: LinkCheck
         id: broken_link
-        run: echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
+        run: |
+          echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
+          make linkcheck
 
       - name: Create Issue
         if: failure()
