@@ -22,12 +22,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: LinkCheck
-        uses: mathiasvr/command-output@v1
-        id: tests
-        with:
-          run: |
-            make linkcheck
-            echo "GITHUB_SHA_SHORT=$(make linkcheck)" >> $GITHUB_ENV
+        id: version
+        run: |
+          make linkcheck
+          echo "::set-output name=BROKEN_LINKS::$(make linkcheck)"
 
       - name: Create an issue
         if: failure()
@@ -36,7 +34,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: test
           body: |
-            ${{ env.GITHUB_SHA_SHORT }}
+            ${{ steps.version.outputs.BROKEN_LINKS }}
 
           labels: |
             bug
