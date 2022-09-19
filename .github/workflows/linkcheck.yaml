@@ -25,7 +25,9 @@ jobs:
         id: broken_link
         run: |
           echo "::set-output name=BROKEN_LINKS::$(echo "casa" > temp.txt | cat temp.txt)"
-          make linkcheck
+
+      - name: Create Issue
+        run: echo ${{ steps.broken_link.outputs.BROKEN_LINKS }}
 
       - name: Create Issue
         if: failure()
