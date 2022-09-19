@@ -25,10 +25,11 @@ jobs:
         uses: mathiasvr/command-output@v1
         id: tests
         with:
-          run: |
-            result_code=${PIPESTATUS[0]}
-            echo "::set-output name=mix-test::$(make linkcheck)"
-            exit $result_code
+          run: make linkcheck
+      - name: Set env
+        run: echo "BROKEN=${{ steps.tests.outputs.stdout }}" >> $GITHUB_ENV
+      - name: Test
+        run: echo $BROKEN
 
       - name: Create an issue
         if: failure()
@@ -37,7 +38,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           title: test
           body: |
-            ${{ steps.vars.outputs.tests }}
+            $BROKEN
 
           labels: |
             bug
