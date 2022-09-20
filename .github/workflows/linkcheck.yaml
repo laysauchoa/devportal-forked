@@ -22,15 +22,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: LinkCheck
-        uses: mathiasvr/command-output@v1
         id: broken_link
-        with:
-          run: |
-            out="$(make linkcheck)"
-            out="$(echo "${out}" | grep -w "broken")"
-            out="$(echo -n "$out" | tail -c 10000)"
-            echo "::set-output name=BROKEN_LINKS::$out"
-            make linkcheck
+        run: |
+          out="$(make linkcheck)"
+          out="$(echo "${out}" | grep -E "broken")"
+          out="$(echo -n "$out" | tail -c 60000)"
+          echo "::set-output name=BROKEN_LINKS::$out"
+          make linkcheck
+
+      - name: Echo plan output to a file
+        run: |
+          echo "${{ steps.broken_link.outputs.stdout }}" > plan.txt
+          cat plan.txt
 
       - name: Create an issue
         if: failure()
