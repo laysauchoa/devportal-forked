@@ -26,6 +26,10 @@ jobs:
         id: broken_link
         with:
           run: |
+            out="$(make linkcheck)"
+            out="$(echo "${out}" | grep -w "broken")"
+            out="$(echo -n "$out" | tail -c 10000)"
+            echo "::set-output name=BROKEN_LINKS::$out"
             make linkcheck
 
       - name: Create an issue
@@ -34,4 +38,4 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           title: test
-          body: ${{ join(steps.broken_link.outputs.stdout, '\n')}}
+          body: ${{ steps.broken_link.outputs.BROKEN_LINKS }}
