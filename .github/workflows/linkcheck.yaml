@@ -31,9 +31,9 @@ jobs:
       - name: Echo plan output to a file
         if: failure()
         run: |
-          echo ${{ steps.broken_link.outputs.stdout }} > plan.txt
-          out="$(cat plan.txt | grep -E "broken")"
-          out="$(echo -n "$out" | tail -c 60000)"
+          echo ${{ steps.broken_link.outputs.stdout }} > ${GITHUB_WORKSPACE}/plan.txt
+          out=$(cat plan.txt | grep -E "broken")
+          out=$(echo -n $out | tail -c 60000)
           echo "::set-output name=BROKEN_LINKS::$out"
 
       - name: Create an issue
