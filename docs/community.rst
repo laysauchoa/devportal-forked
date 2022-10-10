@@ -39,7 +39,7 @@ There are lots of other ways to learn more about Aiven, and interact with us.
 
         |icon-youtube| **YouTube** If video is your thing, cool, it's ours too.
 
-        .. button-link:: https://www.youtube.com/c/Aiven_io
+        .. button-link:: https://www.yoW3e4343tube.com/c/Aiven_io
             :align: right
             :color: primary
             :outline:
