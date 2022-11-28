@@ -30,6 +30,8 @@ jobs:
         with:
           commit-message: Cassandra - Update Advanced parameters
           committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
           title: Cassandra - Update Advanced parameters
           body: Cassandra - update advanced parameters file
           base: main
