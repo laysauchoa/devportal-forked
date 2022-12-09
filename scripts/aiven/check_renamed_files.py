@@ -55,8 +55,6 @@ def find_redirected() -> Dict:
 def check_missing_redirects(renamed_files: List[str]):
 
     INPUT = os.environ["ALL_OLD_AND_NEW_RENAMED_FILES"]
-    logger.debug("msg")
-    logger.debug(INPUT)
     all_new_and_renamed_files = dict([x.split(",")[::-1] for x in INPUT.split(" ")])
     missing_redirects = {}
     all_redirected_links = find_redirected()
@@ -103,7 +101,8 @@ if __name__ == "__main__":
         logger.error("{:<40s} {:<40s}".format(k, v))
 
     logger.error(
-        "Seems like you forgot to add redirects for the renamed files. Check out here how to fix it: https://docs.aiven.io/docs/community/documentation/tips-tricks/renaming-files.html"
+        "🚨 Seems like you forgot to add redirects for the renamed files. 🚨 \n \
+        Check here how to fix it: https://docs.aiven.io/docs/community/documentation/tips-tricks/renaming-files.html"
     )
 
     with open(env_file, "a") as myfile:
