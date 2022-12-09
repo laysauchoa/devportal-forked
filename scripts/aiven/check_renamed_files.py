@@ -45,8 +45,6 @@ def find_redirected() -> Dict:
         lines = f.readlines()
     for line in lines:
         if line.startswith("/docs/") and not line.startswith("/docs/:"):
-            logger.info("linesssss")
-            logger.info(line)
             previous, redirected = line.split()
             if not previous.endswith(".html"):
                 all_redirected_links[previous] = redirected
@@ -62,10 +60,6 @@ def check_missing_redirects(renamed_files: List[str]):
     all_new_and_renamed_files = dict([x.split(",")[::-1] for x in INPUT.split(" ")])
     missing_redirects = {}
     all_redirected_links = find_redirected()
-    logger.debug("---------------------ALL RENAMED FILES-------")
-    logger.info(renamed_files)
-    logger.debug("---------------------ALL NEW AND RENAMED FILES-------")
-    logger.info(all_new_and_renamed_files)
 
     for renamed in renamed_files:
         current_link = renamed.rstrip(".rst")
