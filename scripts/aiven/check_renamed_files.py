@@ -100,9 +100,9 @@ if __name__ == "__main__":
     for k, v in missing_redirects.items():
         logger.error("{:<40s} {:<40s}".format(k, v))
 
-    logger.error(
-        "🚨 Seems like you forgot to add redirects for the renamed files. 🚨 \n \
-        Check here how to fix it: https://docs.aiven.io/docs/community/documentation/tips-tricks/renaming-files.html"
+    logger.info("🚨 Seems like you forgot to add redirects for the renamed files. 🚨")
+    logger.info(
+        "More info: https://docs.aiven.io/docs/community/documentation/tips-tricks/renaming-files.html"
     )
 
     with open(env_file, "a") as myfile:
