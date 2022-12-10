@@ -2,9 +2,9 @@ import psycopg2
 
 
 def main():
-    conn = psycopg2.connect('POSTGRESQL_URI')
+    conn = psycopg2.connect("POSTGRESQL_URI")
 
-    query_sql = 'SELECT VERSION()'
+    query_sql = "SELECT VERSION()"
 
     cur = conn.cursor()
     cur.execute(query_sql)

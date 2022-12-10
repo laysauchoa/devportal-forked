@@ -4,14 +4,16 @@ from influxdb import InfluxDBClient
 
 
 def main():
-    client = InfluxDBClient(host="SERVICE_HOST",
-                            port="SERVICE_PORT",
-                            username="avnadmin",
-                            password="AVNADMIN_PASS",
-                            database="default",
-                            ssl=True,
-                            verify_ssl=True,
-                            path='/api/v1/influxdb')
+    client = InfluxDBClient(
+        host="SERVICE_HOST",
+        port="SERVICE_PORT",
+        username="avnadmin",
+        password="AVNADMIN_PASS",
+        database="default",
+        ssl=True,
+        verify_ssl=True,
+        path="/api/v1/influxdb",
+    )
 
     json_body = [
         {
@@ -20,9 +22,7 @@ def main():
                 "host": "testnode",
             },
             "time": datetime.utcnow().isoformat(),
-            "fields": {
-                "value": 0.96
-            }
+            "fields": {"value": 0.96},
         }
     ]
     print(client.write_points(json_body))

@@ -6,8 +6,8 @@ import hashlib
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--es-url', help='OpenSearch URL')
-parser.add_argument('--html-build-dir', help='Sphinx HTML build directory')
+parser.add_argument("--es-url", help="OpenSearch URL")
+parser.add_argument("--html-build-dir", help="Sphinx HTML build directory")
 
 # Path relative to build dir
 INDEX_BLACKLIST = ["search.html", "genindex.html"]
@@ -16,8 +16,7 @@ INDEX_BLACKLIST = ["search.html", "genindex.html"]
 def parse_pages(html_build_dir):
     pages = []
 
-    for filepath in glob.iglob(path.join(html_build_dir, '**/*.html'),
-                               recursive=True):
+    for filepath in glob.iglob(path.join(html_build_dir, "**/*.html"), recursive=True):
 
         relative_path = path.relpath(filepath, html_build_dir)
 
@@ -26,18 +25,20 @@ def parse_pages(html_build_dir):
             continue
 
         with open(filepath) as file:
-            doc = BeautifulSoup(file.read(), 'html.parser')
+            doc = BeautifulSoup(file.read(), "html.parser")
 
             title = doc.title.text
-            content = doc.select('main .content')[0].text
+            content = doc.select("main .content")[0].text
 
-            pages.append({
-                'title': title,
-                'content': content.replace("¶", ""),
-                'url': relative_path,
-                'source': 'devportal',
-                'sort_priority': 1
-            })
+            pages.append(
+                {
+                    "title": title,
+                    "content": content.replace("¶", ""),
+                    "url": relative_path,
+                    "source": "devportal",
+                    "sort_priority": 1,
+                }
+            )
 
             print(f"Parsed {filepath}")
 
@@ -48,48 +49,39 @@ def create_es_base(os_client, index_name):
     # If needed uncomment next line to start over
     # os_client.indices.delete(index=index_name)
     os_client.indices.create(index=index_name, ignore=400)
-    os_client.indices.put_mapping(index=index_name,
-                           body={
-                               'dynamic': False,
-                               'properties': {
-                                   'title': {
-                                       'type': 'text'
-                                   },
-                                   'description': {
-                                       'type': 'text'
-                                   },
-                                   'content': {
-                                       'type': 'text'
-                                   },
-                                   'source': {
-                                       'type': 'keyword'
-                                   },
-                                   'sort_priority': {
-                                       'type': 'integer'
-                                   }
-                               }
-                           })
+    os_client.indices.put_mapping(
+        index=index_name,
+        body={
+            "dynamic": False,
+            "properties": {
+                "title": {"type": "text"},
+                "description": {"type": "text"},
+                "content": {"type": "text"},
+                "source": {"type": "keyword"},
+                "sort_priority": {"type": "integer"},
+            },
+        },
+    )
 
 
 def index_pages(os_client, index_name, pages):
-    os_client.delete_by_query(index=index_name,
-                       body={'query': {
-                           'term': {
-                               'source': 'devportal'
-                           }
-                       }})
+    os_client.delete_by_query(
+        index=index_name, body={"query": {"term": {"source": "devportal"}}}
+    )
 
     for page in pages:
-        os_client.index(index=index_name,
-                 body=page,
-                 id=hashlib.sha256(page['url'].encode("utf-8")).hexdigest())
+        os_client.index(
+            index=index_name,
+            body=page,
+            id=hashlib.sha256(page["url"].encode("utf-8")).hexdigest(),
+        )
         print(f"Indexed {page['url']}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = parser.parse_args()
 
-    index_name = 'devportal'
+    index_name = "devportal"
 
     os_client = OpenSearch([args.es_url], use_ssl=True)
     create_es_base(os_client, index_name)
