@@ -46,7 +46,8 @@
 /docs/products/clickhouse/howto/use-query-editor.html                  /docs/products/clickhouse/howto/query-databases.html
 /docs/products/clickhouse/howto/add-service-users                      /docs/products/clickhouse/howto/manage-users-roles
 /docs/products/clickhouse/howto/add-service-users.html                 /docs/products/clickhouse/howto/manage-users-roles.html
-
+/docs/products/grafana/howto/send-email                               /docs/products/grafana/howto/send-emails-renamed
+/docs/integration                                                     /docs/integrations_renamed     
 # Redirect from .index.html to specific page names for landing
 
 # with one section and no subsections, i. e. docs/platform
