@@ -61,22 +61,14 @@ def check_missing_redirects(renamed_files: List[str]):
 
     missing_redirects = {}
     all_redirected_links = find_redirected()
-    logger.debug("all redirected link")
-    logger.debug(all_redirected_links)
-    logger.debug("renamed files")
-    logger.debug(renamed_files)
     for renamed in renamed_files:
-        current_link = renamed.rstrip(".rst")
         try:
             previous_link = all_new_and_renamed_files[renamed].rstrip(".rst")
             logger.debug(previous_link)
         except KeyError:
             logger.error("Missing renamed files on all new and renamed files.")
             exit(0)
-        logger.debug("Restultato")
-        logger.debug(all_redirected_links.get(previous_link))
-        logger.debug("current link")
-        logger.debug(current_link)
+        current_link = renamed.rstrip(".rst")
         if all_redirected_links.get(previous_link) != current_link:
             missing_redirects[previous_link] = current_link
     return missing_redirects
