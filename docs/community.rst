@@ -1,7 +1,7 @@
 Aiven community
 ===============
 
-There are lots of other ways to learn more about Aiven, and interact with us.
+Hey! There are lots of other ways to learn more about Aiven, and interact with us.
 
 
 .. grid:: 1 2 2 2
