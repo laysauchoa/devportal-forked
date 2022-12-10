@@ -16,10 +16,10 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Aiven Docs'
-copyright = '2022, Aiven Team'
-author = 'Aiven Team'
-html_title = 'Aiven'
+project = "Aiven Docs"
+copyright = "2022, Aiven Team"
+author = "Aiven Team"
+html_title = "Aiven"
 
 # -- General configuration ---------------------------------------------------
 
@@ -27,46 +27,55 @@ html_title = 'Aiven'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_sitemap',
-    'sphinx_design',
-    'sphinxcontrib.mermaid',
-    'sphinx_external_toc',
-    'sphinx_copybutton',
-    'sphinx_gitstamp',
-    'sphinxext.opengraph',
-    'notfound.extension',
+    "sphinx_sitemap",
+    "sphinx_design",
+    "sphinxcontrib.mermaid",
+    "sphinx_external_toc",
+    "sphinx_copybutton",
+    "sphinx_gitstamp",
+    "sphinxext.opengraph",
+    "notfound.extension",
 ]
 
 # Not Found configuration
 # see all options at https://sphinx-notfound-page.readthedocs.io/en/latest/configuration.html
-notfound_urls_prefix = ''
+notfound_urls_prefix = ""
 
 # OpenGraph configuration
 # see all options at https://github.com/wpilibsuite/sphinxext-opengraph#options
-ogp_site_url = 'https://docs.aiven.io/'
+ogp_site_url = "https://docs.aiven.io/"
 ogp_description_length = 200
-ogp_image = '/_static/images/site-preview.png'
+ogp_image = "/_static/images/site-preview.png"
 
 # Mermaid version
 mermaid_version = "8.12.0"
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-    '_build', 'Thumbs.db', '.DS_Store', 'README*', 'scripts', 'utils',
-    'CONTRIBUTING.rst', 'REVIEWING.rst', 'includes',
-    '.github/vale', '.venv', 'venv',
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "README*",
+    "scripts",
+    "utils",
+    "CONTRIBUTING.rst",
+    "REVIEWING.rst",
+    "includes",
+    ".github/vale",
+    ".venv",
+    "venv",
 ]
 
 # gitstamp config
 gitstamp_fmt = "%B %Y"
 
 # sitemap config
-html_baseurl = 'https://docs.aiven.io'
+html_baseurl = "https://docs.aiven.io"
 # Since we have `language='en'` set (further down) the URLs in the sitemap will
 # default to "{version}{lang}{link}", producing things like
 #    <url><loc>https://docs.aiven.io/en/docs/platform/howto/create_authentication_token.html</loc></url>
@@ -78,10 +87,10 @@ sitemap_url_scheme = "{link}"
 # The following pages are known to cause it problems.
 linkcheck_ignore = [
     # Kafka documentation anchors do not seem to be detected. We use the following:
-    'https://kafka.apache.org/documentation/#consumerconfigs_auto.offset.reset',
-    'https://kafka.apache.org/documentation/#design_consumerposition',
+    "https://kafka.apache.org/documentation/#consumerconfigs_auto.offset.reset",
+    "https://kafka.apache.org/documentation/#design_consumerposition",
     # Azure Marketplace uses internal links which confuses the checker, so ignoring these:
-    'https://portal.azure.com/#view/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home',
+    "https://portal.azure.com/#view/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home",
 ]
 
 # -- Options for HTML output -------------------------------------------------
@@ -89,8 +98,8 @@ linkcheck_ignore = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_favicon = './_static/images/favicon.ico'
-html_theme = 'furo'
+html_favicon = "./_static/images/favicon.ico"
+html_theme = "furo"
 html_theme_options = {
     "light_logo": "images/logoLight.png",
     "dark_logo": "images/logoDark.png",
@@ -119,7 +128,6 @@ html_theme_options = {
         "sd-color-card-background": "#f7f7fa",
         "sd-color-primary": "#4a4b57",
         "sidebar-tree-space-above": "8px",
-
         # Custom css variables
         "color-search": "#19191D",
         "color-search-focused": "#4A4B57",
@@ -139,7 +147,7 @@ html_theme_options = {
         "color-topnav-button-secondary-border": "#E41A4A",
         "color-topnav-button-secondary-hover": "#E41A4A",
         "color-topnav-button-secondary-hover-border": "#E41A4A",
-        "color-topnav-button-secondary-hover-background": "#FFF9FC"
+        "color-topnav-button-secondary-hover-background": "#FFF9FC",
     },
     "dark_css_variables": {
         "color-brand-primary": "#d2d2d6",
@@ -170,7 +178,6 @@ html_theme_options = {
         "sd-color-card-background": "#0b0b14",
         "sd-color-primary": "#e1e1e3",
         "sidebar-tree-space-above": "8px",
-
         # Custom css variables
         "color-search": "#F7F7FA",
         "color-search-focused": "#FFFFFF",
@@ -190,9 +197,9 @@ html_theme_options = {
         "color-topnav-button-secondary-border": "#f7f7fa",
         "color-topnav-button-secondary-hover": "#f7f7fa",
         "color-topnav-button-secondary-hover-border": "#f7f7fa",
-        "color-topnav-button-secondary-hover-background": "rgba(255, 255, 255, 0.1)"
+        "color-topnav-button-secondary-hover-background": "rgba(255, 255, 255, 0.1)",
     },
-    "navigation_with_keys": True
+    "navigation_with_keys": True,
 }
 
 pygments_style = "monokai"
@@ -201,9 +208,9 @@ pygments_style = "monokai"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 language = "en"
-html_extra_path = ['robots.txt', '_redirects']
-html_static_path = ['_static']
-html_css_files = ['css/aiven.css']
+html_extra_path = ["robots.txt", "_redirects"]
+html_static_path = ["_static"]
+html_css_files = ["css/aiven.css"]
 html_sidebars = {
     "**": [
         "sidebar/scroll-start.html",
