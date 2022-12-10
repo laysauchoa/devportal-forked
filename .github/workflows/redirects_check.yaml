@@ -46,7 +46,7 @@ jobs:
           if ! [ -z "$var" ];then
             python "scripts/aiven/check_renamed_files.py" --renamed_files ${{ steps.changed-files.outputs.renamed_files }}
           fi
-          if ! [ -z ${{env.MISSING_REDIRECTION}} ];then
+          if ! [ -z "${{env.MISSING_REDIRECTION}}" ];then
             echo "renamed:"
             echo ${{env.MISSING_REDIRECTION}}
             echo "::error::Files were renamed with missing _redirects. Add redirect to renamed files to fix it. \n  ${{env.MISSING_REDIRECTION}}"
