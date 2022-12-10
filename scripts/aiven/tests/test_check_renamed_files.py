@@ -43,7 +43,8 @@ def test_check_missing_redirects_with_missing_links():
 def test_check_missing_redirects_with_no_renamed_files():
     """
     Test when there were previous changes in all old and new renamed file,
-    without renamed files in current commit
+    without renamed files in current commit. No missind redirects should be
+    reported
     """
     renamed_files = []
     missing_redirects = check_missing_redirects(renamed_files)
@@ -56,7 +57,7 @@ def test_check_missing_redirects_with_no_renamed_files():
 )
 def test_check_missing_redirects_no_files_changed_and_no_renamed_files():
     """
-    Function should raise an error if no files changed
+    Function should raise an error if no files changed and this function is called
     """
     with pytest.raises(ValueError):
         renamed_files = []

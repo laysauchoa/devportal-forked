@@ -34,9 +34,10 @@ coloredlogs.install(
 
 
 def find_redirected() -> Dict:
-    """Creates a dict with the redirected files:
+    """Creates a dict with the redirected files
+    on the _redirects file.
 
-    { previous_link : redirected_link }
+    { previous : redirected}
 
     :returns: set with redirected files
     :rtype: set
@@ -47,6 +48,7 @@ def find_redirected() -> Dict:
     for line in lines:
         if line.startswith("/docs/") and not line.startswith("/docs/:"):
             previous, redirected = [x.lstrip("/") for x in line.split()]
+            # avoid repetitions of `html`
             if not previous.endswith(".html"):
                 all_redirected_links[previous] = redirected
 
@@ -54,6 +56,14 @@ def find_redirected() -> Dict:
 
 
 def check_missing_redirects(renamed_files: List[str]):
+    """
+    Creates a dict with all missing redirects.
+
+    { previous_link: current_link }
+
+    :returns: missing redirects
+    :rtype: dict
+    """
 
     INPUT = os.environ["ALL_OLD_AND_NEW_RENAMED_FILES"]
     all_new_and_renamed_files = dict([x.split(",")[::-1] for x in INPUT.split(" ")])
