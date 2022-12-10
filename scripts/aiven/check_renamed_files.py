@@ -109,10 +109,10 @@ if __name__ == "__main__":
         sys.exit()
 
     res = ""
-    h = ["Previous Name", "Current Name"]
-    logger.error("{:<40s} {:<40s}".format(*h))
+    h = ["Previous Name", " Current Name"]
+    logger.error("{:<45s} {:<45s}".format(*h))
     for k, v in missing_redirects.items():
-        logger.error("/{:<40s} /{:<40s}".format(k, v))
+        logger.error("/{:<45s} /{:<45s}".format(k, v))
 
     logger.info("🚨 Seems like you forgot to add redirects for the renamed files. 🚨")
     logger.info(
