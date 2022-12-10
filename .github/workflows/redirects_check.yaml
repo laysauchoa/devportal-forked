@@ -47,6 +47,10 @@ jobs:
             python "scripts/aiven/check_renamed_files.py" --renamed_files ${{ steps.changed-files.outputs.renamed_files }}
           fi
           echo "${{env.MISSING_REDIRECTION}}"
+          if ! [ -z "${{env.MISSING_REDIRECTION}}" ];then
+            echo "renamed:"
+            echo ${{env.MISSING_REDIRECTION}}
+          fi
 
       - name: Check env
         if: echo "${{env.MISSING_REDIRECTION}}" != ""
