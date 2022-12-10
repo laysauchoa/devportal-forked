@@ -33,7 +33,7 @@ def index_pages(es, base_url):
             except Exception as e:
                 fails.append((article_url, e))
 
-    if (os.getenv('INDEX_DEBUG')):
+    if os.getenv("INDEX_DEBUG"):
         print("# INDEXED")
         print("\n".join(successes))
         print("# SKIPPED (REDIRECTS)")
@@ -42,12 +42,15 @@ def index_pages(es, base_url):
         print("\n".join([f"{url} | {repr(error)}" for (url, error) in fails]))
 
     all_pages = successes + skips
-    print("HELP Summary: {:d} help pages found, {:d} redirects, {:d} total".format(
-        len(successes), len(skips), len(all_pages)))
+    print(
+        "HELP Summary: {:d} help pages found, {:d} redirects, {:d} total".format(
+            len(successes), len(skips), len(all_pages)
+        )
+    )
 
 
 if __name__ == "__main__":
-    tree = sitemap_tree_for_homepage('https://docs.aiven.io')
+    tree = sitemap_tree_for_homepage("https://docs.aiven.io")
     devportal_pages = sum(1 for _ in tree.all_pages())
     print("Aiven Developer sitemap page count: {:d}".format(devportal_pages))
 
@@ -55,4 +58,3 @@ if __name__ == "__main__":
     es = ""
 
     index_pages(es, base_url)
-
