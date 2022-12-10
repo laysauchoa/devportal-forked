@@ -48,9 +48,10 @@ jobs:
           fi
 
       - name: Check env
-        if: echo "${{env.MISSING_REDIRECTION}}" != ""
+        env:
+          MISSING_REDIRECTION: ${{ env.MISSING_REDIRECTION }}
+        if: "${{ env.MISSING_REDIRECTION != '' }}"
         run: |
-          echo "renamed:"
-          echo ${{env.MISSING_REDIRECTION}}
-          echo "::error::Files were renamed with missing _redirects. Add redirect to renamed files to fix it. ${{env.MISSING_REDIRECTION}}"
+          echo "::error::Files were renamed with missing _redirects. Add redirect to renamed files to fix it. Renamed: ${{env.MISSING_REDIRECTION}}"
+          echo "::error::For full report, check logs on the step above."
           exit 1
