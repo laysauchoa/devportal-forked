@@ -45,7 +45,7 @@ def find_redirected() -> Dict:
         lines = f.readlines()
     for line in lines:
         if line.startswith("/docs/") and not line.startswith("/docs/:"):
-            previous, redirected = line.split()
+            previous, redirected = [x.lstrip("/") for x in line.split()]
             if not previous.endswith(".html"):
                 all_redirected_links[previous] = redirected
 
@@ -56,18 +56,28 @@ def check_missing_redirects(renamed_files: List[str]):
 
     INPUT = os.environ["ALL_OLD_AND_NEW_RENAMED_FILES"]
     all_new_and_renamed_files = dict([x.split(",")[::-1] for x in INPUT.split(" ")])
+    logger.debug("all new and renamed file")
+    logger.debug(all_new_and_renamed_files)
+
     missing_redirects = {}
     all_redirected_links = find_redirected()
-
+    logger.debug("all redirected link")
+    logger.debug(all_redirected_links)
+    logger.debug("renamed files")
+    logger.debug(renamed_files)
     for renamed in renamed_files:
         current_link = renamed.rstrip(".rst")
         try:
             previous_link = all_new_and_renamed_files[renamed].rstrip(".rst")
+            logger.debug(previous_link)
         except KeyError:
             logger.error("Missing renamed files on all new and renamed files.")
             exit(0)
-
-        if all_redirected_links.get(previous_link) is not current_link:
+        logger.debug("Restultato")
+        logger.debug(all_redirected_links.get(previous_link))
+        logger.debug("current link")
+        logger.debug(current_link)
+        if all_redirected_links.get(previous_link) != current_link:
             missing_redirects[previous_link] = current_link
     return missing_redirects
 
@@ -93,6 +103,9 @@ if __name__ == "__main__":
         sys.exit()
 
     missing_redirects = check_missing_redirects(renamed_files)
+    if not missing_redirects:
+        logger.info("Files renamed and redirects are added to _redirects.")
+        sys.exit()
 
     res = ""
     h = ["Previous Name", "Current Name"]
