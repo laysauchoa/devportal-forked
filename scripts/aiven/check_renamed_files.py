@@ -14,7 +14,6 @@ logging.basicConfig(format="%(asctime)s - [%(levelname)s] - %(message)s")
 
 
 FIELD_STYLES = dict(asctime=dict(color="yellow"), levelname=dict(color="magenta"))
-
 LEVEL_STYLES = dict(
     debug=dict(color="green"),
     info=dict(color="cyan"),
