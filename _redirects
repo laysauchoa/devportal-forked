@@ -47,7 +47,7 @@
 /docs/products/clickhouse/howto/add-service-users                      /docs/products/clickhouse/howto/manage-users-roles
 /docs/products/clickhouse/howto/add-service-users.html                 /docs/products/clickhouse/howto/manage-users-roles.html
 /docs/community                                                         /docs/community_renamed 
-
+/docs/integration                                                        /docs/integrations_renamed    
 # Redirect from .index.html to specific page names for landing
 
 # with one section and no subsections, i. e. docs/platform
