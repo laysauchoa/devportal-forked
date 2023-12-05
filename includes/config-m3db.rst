@@ -15,6 +15,14 @@
 
 
 
+``service_log``
+---------------
+*['boolean', 'null']*
+
+**Service logging** Store logs for the service so that they are available in the HTTP API and console.
+
+
+
 ``static_ips``
 --------------
 *boolean*
@@ -64,6 +72,20 @@
 *string*
 
 **The lookback period for 'max_recently_queried_series_blocks' and 'max_recently_queried_series_disk_bytes_read'.** 
+
+
+
+``m3``
+------
+*object*
+
+**M3 specific configuration options** 
+
+``tag_options``
+~~~~~~~~~~~~~~~
+*object*
+
+**M3 Tag Options** 
 
 
 
