@@ -1,17 +1,17 @@
 
-``additional_backup_regions``
------------------------------
-*array*
-
-**Additional Cloud Regions for Backup Replication** 
-
-
-
 ``ip_filter``
 -------------
 *array*
 
 **IP filter** Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'
+
+
+
+``service_log``
+---------------
+*['boolean', 'null']*
+
+**Service logging** Store logs for the service so that they are available in the HTTP API and console.
 
 
 
@@ -69,7 +69,7 @@
 ---------------------
 *['string', 'null']*
 
-**Cassandra major version** 
+**Cassandra version** 
 
 
 
@@ -114,6 +114,22 @@
 *['string', 'null']*
 
 **Name of another project to fork a service from. This has effect only when a new service is being created.** 
+
+
+
+``backup_hour``
+---------------
+*['integer', 'null']*
+
+**The hour of day (in UTC) when backup for the service is started. New backup is only started if previous backup has already completed.** 
+
+
+
+``backup_minute``
+-----------------
+*['integer', 'null']*
+
+**The minute of an hour when backup for the service is started. New backup is only started if previous backup has already completed.** 
 
 
 
