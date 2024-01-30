@@ -15,6 +15,14 @@
 
 
 
+``service_log``
+---------------
+*['boolean', 'null']*
+
+**Service logging** Store logs for the service so that they are available in the HTTP API and console.
+
+
+
 ``static_ips``
 --------------
 *boolean*
@@ -119,7 +127,7 @@
 -----------------------------
 *integer*
 
-**Number of redis databases** Set number of redis databases. Changing this will cause a restart of redis service.
+**Number of Redis databases** Set number of Redis databases. Changing this will cause a restart of the Redis service.
 
 
 
@@ -127,7 +135,7 @@
 --------------------
 *integer*
 
-**Redis IO thread count** 
+**Redis IO thread count** Set Redis IO thread count. Changing this will cause a restart of the Redis service.
 
 
 
@@ -184,6 +192,14 @@
 *string*
 
 **Default ACL for pub/sub channels used when Redis user is created** Determines default pub/sub channels' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility. This option doesn't affect Redis configuration acl-pubsub-default.
+
+
+
+``redis_version``
+-----------------
+*['string', 'null']*
+
+**Redis major version** 
 
 
 
