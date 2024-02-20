@@ -15,6 +15,14 @@
 
 
 
+``service_log``
+---------------
+*['boolean', 'null']*
+
+**Service logging** Store logs for the service so that they are available in the HTTP API and console.
+
+
+
 ``static_ips``
 --------------
 *boolean*
@@ -227,7 +235,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 *integer*
 
-**innodb_flush_neighbors** Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed,  1 - flush contiguous dirty pages in the same extent,  2 - flush dirty pages in the same extent
+**innodb_flush_neighbors** Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent
 
 ``innodb_ft_min_token_size``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -245,7 +253,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *integer*
 
-**innodb_lock_wait_timeout** The length of time in seconds an InnoDB transaction waits for a row lock before giving up.
+**innodb_lock_wait_timeout** The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
 
 ``innodb_log_buffer_size``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
