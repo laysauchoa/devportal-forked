@@ -39,11 +39,149 @@
 
 
 
+``service_log``
+---------------
+*['boolean', 'null']*
+
+**Service logging** Store logs for the service so that they are available in the HTTP API and console.
+
+
+
 ``static_ips``
 --------------
 *boolean*
 
 **Static IP addresses** Use static public IP addresses
+
+
+
+``saml``
+--------
+*object*
+
+**OpenSearch SAML configuration** 
+
+``enabled``
+~~~~~~~~~~~
+*boolean*
+
+**Enable or disable OpenSearch SAML authentication** Enables or disables SAML-based authentication for OpenSearch. When enabled, users can authenticate using SAML with an Identity Provider.
+
+``idp_metadata_url``
+~~~~~~~~~~~~~~~~~~~~
+*string*
+
+**Identity Provider (IdP) SAML metadata URL** The URL of the SAML metadata for the Identity Provider (IdP). This is used to configure SAML-based authentication with the IdP.
+
+``idp_entity_id``
+~~~~~~~~~~~~~~~~~
+*string*
+
+**Identity Provider Entity ID** The unique identifier for the Identity Provider (IdP) entity that is used for SAML authentication. This value is typically provided by the IdP.
+
+``sp_entity_id``
+~~~~~~~~~~~~~~~~
+*string*
+
+**Service Provider Entity ID** The unique identifier for the Service Provider (SP) entity that is used for SAML authentication. This value is typically provided by the SP.
+
+``subject_key``
+~~~~~~~~~~~~~~~
+*['string', 'null']*
+
+**SAML response subject attribute** Optional. Specifies the attribute in the SAML response where the subject identifier is stored. If not configured, the NameID attribute is used by default.
+
+``roles_key``
+~~~~~~~~~~~~~
+*['string', 'null']*
+
+**SAML response role attribute** Optional. Specifies the attribute in the SAML response where role information is stored, if available. Role attributes are not required for SAML authentication, but can be included in SAML assertions by most Identity Providers (IdPs) to determine user access levels or permissions.
+
+``idp_pemtrustedcas_content``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*['string', 'null']*
+
+**PEM-encoded root CA Content for SAML IdP server verification** This parameter specifies the PEM-encoded root certificate authority (CA) content for the SAML identity provider (IdP) server verification. The root CA content is used to verify the SSL/TLS certificate presented by the server.
+
+
+
+``openid``
+----------
+*object*
+
+**OpenSearch OpenID Connect Configuration** 
+
+``enabled``
+~~~~~~~~~~~
+*boolean*
+
+**Enable or disable OpenSearch OpenID Connect authentication** Enables or disables OpenID Connect authentication for OpenSearch. When enabled, users can authenticate using OpenID Connect with an Identity Provider.
+
+``connect_url``
+~~~~~~~~~~~~~~~
+*string*
+
+**OpenID Connect metadata/configuration URL** The URL of your IdP where the Security plugin can find the OpenID Connect metadata/configuration settings.
+
+``roles_key``
+~~~~~~~~~~~~~
+*['string', 'null']*
+
+**The key in the JSON payload that stores the user’s roles** The key in the JSON payload that stores the user’s roles. The value of this key must be a comma-separated list of roles. Required only if you want to use roles in the JWT
+
+``subject_key``
+~~~~~~~~~~~~~~~
+*['string', 'null']*
+
+**The key in the JSON payload that stores the user’s name** The key in the JSON payload that stores the user’s name. If not defined, the subject registered claim is used. Most IdP providers use the preferred_username claim. Optional.
+
+``jwt_header``
+~~~~~~~~~~~~~~
+*['string', 'null']*
+
+**The HTTP header that stores the token** The HTTP header that stores the token. Typically the Authorization header with the Bearer schema: Authorization: Bearer <token>. Optional. Default is Authorization.
+
+``jwt_url_parameter``
+~~~~~~~~~~~~~~~~~~~~~
+*['string', 'null']*
+
+**URL JWT token.** If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of the parameter here. Optional.
+
+``refresh_rate_limit_count``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*['integer', 'null']*
+
+**The maximum number of unknown key IDs in the time frame** The maximum number of unknown key IDs in the time frame. Default is 10. Optional.
+
+``refresh_rate_limit_time_window_ms``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*['integer', 'null']*
+
+**The time frame to use when checking the maximum number of unknown key IDs, in milliseconds** The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. Optional.Default is 10000 (10 seconds).
+
+``client_id``
+~~~~~~~~~~~~~
+*string*
+
+**The ID of the OpenID Connect client** The ID of the OpenID Connect client configured in your IdP. Required.
+
+``client_secret``
+~~~~~~~~~~~~~~~~~
+*string*
+
+**The client secret of the OpenID Connect** The client secret of the OpenID Connect client configured in your IdP. Required.
+
+``scope``
+~~~~~~~~~
+*string*
+
+**The scope of the identity token issued by the IdP** The scope of the identity token issued by the IdP. Optional. Default is openid profile email address phone.
+
+``header``
+~~~~~~~~~~
+*string*
+
+**HTTP header name of the JWT token** HTTP header name of the JWT token. Optional. Default is Authorization.
 
 
 
@@ -151,6 +289,18 @@
 
 **indices.memory.index_buffer_size** Percentage value. Default is 10%. Total amount of heap used for indexing buffer, before writing segments to disk. This is an expert setting. Too low value will slow down indexing; too high value will increase indexing performance but causes performance issues for query performance.
 
+``indices_memory_min_index_buffer_size``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**indices.memory.min_index_buffer_size** Absolute value. Default is 48mb. Doesn't work without indices.memory.index_buffer_size. Minimum amount of heap used for query cache, an absolute indices.memory.index_buffer_size minimal hard limit.
+
+``indices_memory_max_index_buffer_size``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**indices.memory.max_index_buffer_size** Absolute value. Default is unbound. Doesn't work without indices.memory.index_buffer_size. Maximum amount of heap used for query cache, an absolute indices.memory.index_buffer_size maximum hard limit.
+
 ``indices_queries_cache_size``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *integer*
@@ -174,6 +324,24 @@
 *boolean*
 
 **action.auto_create_index** Explicitly allow or block automatic creation of indices. Defaults to true
+
+``plugins_alerting_filter_by_backend_roles``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*boolean*
+
+**plugins.alerting.filter_by_backend_roles** Enable or disable filtering of alerting by backend roles. Requires Security plugin. Defaults to false
+
+``auth_failure_listeners``
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+*object*
+
+**Opensearch Security Plugin Settings** 
+
+``enable_security_audit``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+*boolean*
+
+**Enable/Disable security audit** 
 
 ``thread_pool_search_size``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -273,21 +441,57 @@
 
 ``email_sender_name``
 ~~~~~~~~~~~~~~~~~~~~~
-*['string']*
+*string*
 
-**Sender email name placeholder to be used in Opensearch Dashboards and Opensearch keystore** This should be identical to the Sender name defined in Opensearch dashboards
+**Sender name placeholder to be used in Opensearch Dashboards and Opensearch keystore** This should be identical to the Sender name defined in Opensearch dashboards
 
 ``email_sender_username``
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-*['string']*
+*string*
 
-**Sender email address for Opensearch alerts** 
+**Sender username for Opensearch alerts** 
 
 ``email_sender_password``
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-*['string']*
+*string*
 
-**Sender email password for Opensearch alerts to authenticate with SMTP server** Sender email password for Opensearch alerts to authenticate with SMTP server
+**Sender password for Opensearch alerts to authenticate with SMTP server** Sender password for Opensearch alerts to authenticate with SMTP server
+
+``ism_enabled``
+~~~~~~~~~~~~~~~
+*boolean*
+
+**Specifies whether ISM is enabled or not** 
+
+``ism_history_enabled``
+~~~~~~~~~~~~~~~~~~~~~~~
+*boolean*
+
+**Specifies whether audit history is enabled or not. The logs from ISM are automatically indexed to a logs document.** 
+
+``ism_history_max_age``
+~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**The maximum age before rolling over the audit history index in hours** 
+
+``ism_history_max_docs``
+~~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**The maximum number of documents before rolling over the audit history index.** 
+
+``ism_history_rollover_check_period``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**The time between rollover checks for the audit history index in hours.** 
+
+``ism_history_rollover_retention_period``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*integer*
+
+**How long audit history indices are kept in days.** 
 
 
 
